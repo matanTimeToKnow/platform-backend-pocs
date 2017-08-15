@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lambda_poc/aws_transcoder_lambda_poc.iml" filepath="$PROJECT_DIR$/.idea/modules/lambda_poc/aws_transcoder_lambda_poc.iml" group="lambda_poc" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sqs_poc/aws_transcoder_sqs_poc.iml" filepath="$PROJECT_DIR$/.idea/modules/sqs_poc/aws_transcoder_sqs_poc.iml" group="sqs_poc" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lambda_poc/lambda_poc_main.iml" filepath="$PROJECT_DIR$/.idea/modules/lambda_poc/lambda_poc_main.iml" group="lambda_poc" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lambda_poc/lambda_poc_test.iml" filepath="$PROJECT_DIR$/.idea/modules/lambda_poc/lambda_poc_test.iml" group="lambda_poc" />
+      <module fileurl="file://$PROJECT_DIR$/platform-backend-pocs.iml" filepath="$PROJECT_DIR$/platform-backend-pocs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sqs_poc/sqs_poc_main.iml" filepath="$PROJECT_DIR$/.idea/modules/sqs_poc/sqs_poc_main.iml" group="sqs_poc" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sqs_poc/sqs_poc_test.iml" filepath="$PROJECT_DIR$/.idea/modules/sqs_poc/sqs_poc_test.iml" group="sqs_poc" />
+    </modules>
+  </component>
+</project>
