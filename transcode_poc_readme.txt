@@ -48,7 +48,16 @@ option #4####################
 	1. connect S3  to SNS notification
 	2. connect Lambda to SNS -> invoke transcoder
 	3. connect SQS queue to SNS -> invoke transcoder
-	
+
+
+#############################
+option #5####################
+#############################
+    1. when the editor performs a file upload it will send the file the the backend server, and not interact with s3 by itself.
+    2. once the file is in the backend server, upload it to a dedicated bucket in S3
+    3. activate the transcoder on the given file
+    4. copy the output to a dedicated location
+
 
 the POC did not tackle the following issues:
 	logging
