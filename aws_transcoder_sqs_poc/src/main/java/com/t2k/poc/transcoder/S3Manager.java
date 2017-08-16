@@ -8,47 +8,30 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CopyObjectResult;
 
+import java.util.regex.Pattern;
+
 
 public class S3Manager {
 
-    public static String bucket = "t2k.bucket.test1";
-    public static AmazonS3 s3;
-
     public static String renameFile(String fileName){
         try {
-            String destinationFileName = fileName + "_original_before_trancode";
-            BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAIAKYHCCN3OORT6ZA", "QqhApjKrNGlomtNItXRrVBtlBXoBgDPiifLs+Ptl");
-            AWSStaticCredentialsProvider awsStaticCredentialsProvider = new AWSStaticCredentialsProvider(awsCreds);
-            s3 = AmazonS3ClientBuilder.standard()
-                    .withCredentials(awsStaticCredentialsProvider)
-                    .withRegion(Regions.EU_WEST_1)
-                    .build();
-
-            CopyObjectResult copyObjectResult = s3.copyObject(bucket, fileName, bucket, destinationFileName);
+            String[] filePartsArray = fileName.split(Pattern.quote("."));
+            String destinationFileName = filePartsArray[0] + "_original_before_trancode"  + "." + filePartsArray[1];
+            AmazonS3 s3 = AmazonS3ClientBuilder.standard().withCredentials(Parameters.getAWSCredentialsProvider()).withRegion(Regions.EU_WEST_1).build();
+            CopyObjectResult copyObjectResult = s3.copyObject(Parameters.S3_BUCKET, fileName, Parameters.S3_BUCKET, destinationFileName);
+            s3.deleteObject(Parameters.S3_BUCKET, fileName);
             return destinationFileName;
         } catch (AmazonServiceException e) {
-            //System.err.println(e.getErrorMessage());
-            //System.exit(1);
+            System.err.println(e.getErrorMessage());
         }
         return null;
     }
-
-    public static void deleteFile(String fileName){
+    public static void copyFile(String bucket, String fileName, String toBucket, String toFileName){
         try {
-            BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAIAKYHCCN3OORT6ZA", "QqhApjKrNGlomtNItXRrVBtlBXoBgDPiifLs+Ptl");
-            AWSStaticCredentialsProvider awsStaticCredentialsProvider = new AWSStaticCredentialsProvider(awsCreds);
-            s3 = AmazonS3ClientBuilder.standard()
-                    .withCredentials(awsStaticCredentialsProvider)
-                    .withRegion(Regions.EU_WEST_1)
-                    .build();
-            s3.deleteObject(bucket, fileName);
+            AmazonS3 s3 = AmazonS3ClientBuilder.standard().withCredentials(Parameters.getAWSCredentialsProvider()).withRegion(Regions.EU_WEST_1).build();
+            CopyObjectResult copyObjectResult = s3.copyObject(bucket, fileName, toBucket, toFileName);
         } catch (AmazonServiceException e) {
-            //System.err.println(e.getErrorMessage());
-            //System.exit(1);
+            System.err.println(e.getErrorMessage());
         }
     }
-
-
-
-
 }

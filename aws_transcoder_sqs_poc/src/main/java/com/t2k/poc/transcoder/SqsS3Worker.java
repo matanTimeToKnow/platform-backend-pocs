@@ -30,6 +30,7 @@ public class SqsS3Worker implements Runnable {
     
     @Override
     public void run() {
+        System.out.println("Start sqs worker");
         ReceiveMessageRequest receiveMessageRequest = new ReceiveMessageRequest()
             .withQueueUrl(queueUrl)
             .withMaxNumberOfMessages(MAX_NUMBER_OF_MESSAGES)
@@ -47,10 +48,21 @@ public class SqsS3Worker implements Runnable {
             }
 
             for (Message message : messages) {
+                System.out.println("Processing incoming messages");
                 try{
                     S3EventNotification s3EventNotification = S3EventNotification.parseJson(message.getBody());
-                    String fileName = s3EventNotification.getRecords().get(0).getS3().getObject().getKey();
-                    TranscoderJobManager.createTranscoderJob(fileName);
+                    String eventName = s3EventNotification.getRecords().get(0).getEventName();
+                    System.out.println("Event name: " + eventName + "\n");
+                    //String fileUploadEventName = "ObjectCreated:CompleteMultipartUpload";
+                    String fileUploadEventName = "ObjectCreated:Put";
+                    if(fileUploadEventName.equals(eventName)){
+                        String fileName = s3EventNotification.getRecords().get(0).getS3().getObject().getKey();
+                        System.out.println("Start transcode process for: " + fileName);
+                        String renamedFileName = S3Manager.renameFile(fileName);
+                        TranscoderJobManager.createTranscoderJob(renamedFileName, fileName);
+                    }
+
+
                 }catch (Exception e){
                     System.out.println("Error creating transcoder job");
 
@@ -58,7 +70,6 @@ public class SqsS3Worker implements Runnable {
                 // Delete the message from the queue.
                 amazonSqs.deleteMessage(new DeleteMessageRequest().withQueueUrl(queueUrl).withReceiptHandle(message.getReceiptHandle()));
             }
-
         }
     }
 
