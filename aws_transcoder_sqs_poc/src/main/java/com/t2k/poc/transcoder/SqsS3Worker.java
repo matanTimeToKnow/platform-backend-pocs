@@ -56,8 +56,8 @@ public class SqsS3Worker implements Runnable {
                     String fileUploadEventName = "ObjectCreated:Put";
                     if(fileUploadEventName.equals(eventName)){
                         String fileName = s3EventNotification.getRecords().get(0).getS3().getObject().getKey();
-                        System.out.println("Start transcode process for: " + fileName);
                         String renamedFileName = S3Manager.renameFile(fileName);
+                        System.out.println("Start transcode process with parameters: " + "renamedFileName - " + renamedFileName + " fileName - " + fileName);
                         TranscoderJobManager.createTranscoderJob(renamedFileName, fileName);
                     }
 

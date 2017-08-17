@@ -31,6 +31,11 @@ public class TranscoderJobManager {
         System.out.println("Job has been created: " + job);
 
         //TODO - make sure job was completed before copying the file
+        ////////////////////////////////////////////////////
+        Thread.sleep(2000);
+        ////////////////////////////////////////////////////
+
+        
         S3Manager.copyFile(Parameters.S3_TRANSCODER_OUTPUT_BUCKET, outputFileName, Parameters.S3_BUCKET, outputFileName);
         System.out.println("transcoded file has been copied to working bucket");
     }
