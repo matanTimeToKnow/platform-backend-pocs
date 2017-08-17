@@ -53,7 +53,6 @@ public class SqsS3Worker implements Runnable {
                     S3EventNotification s3EventNotification = S3EventNotification.parseJson(message.getBody());
                     String eventName = s3EventNotification.getRecords().get(0).getEventName();
                     System.out.println("Event name: " + eventName + "\n");
-                    //String fileUploadEventName = "ObjectCreated:CompleteMultipartUpload";
                     String fileUploadEventName = "ObjectCreated:Put";
                     if(fileUploadEventName.equals(eventName)){
                         String fileName = s3EventNotification.getRecords().get(0).getS3().getObject().getKey();
@@ -61,7 +60,6 @@ public class SqsS3Worker implements Runnable {
                         String renamedFileName = S3Manager.renameFile(fileName);
                         TranscoderJobManager.createTranscoderJob(renamedFileName, fileName);
                     }
-
 
                 }catch (Exception e){
                     System.out.println("Error creating transcoder job");
