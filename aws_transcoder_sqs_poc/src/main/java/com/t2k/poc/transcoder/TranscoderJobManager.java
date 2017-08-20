@@ -32,7 +32,7 @@ public class TranscoderJobManager {
 
         //TODO - make sure job was completed before copying the file
         ////////////////////////////////////////////////////
-        Thread.sleep(2000);
+        Thread.sleep(10000);
         ////////////////////////////////////////////////////
 
         
