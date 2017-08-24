@@ -6,9 +6,9 @@ repositories {
 
 dependencies {
     //compile group: 'com.amazonaws', name: 'aws-java-sdk', version: '1.11.176'
-    compile group: 'com.amazonaws', name: 'aws-java-sdk-sqs', version: '1.11.176'
-    compile group: 'com.amazonaws', name: 'aws-java-sdk-elastictranscoder', version: '1.11.176'
-    compile group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.176'
+    compile group: 'com.amazonaws', name: 'aws-java-sdk-sqs', version: '1.11.180'
+    compile group: 'com.amazonaws', name: 'aws-java-sdk-elastictranscoder', version: '1.11.180'
+    compile group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.180'
 }
 
 task buildZip(type: Zip) {

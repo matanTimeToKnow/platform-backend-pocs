@@ -6,12 +6,14 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.CopyObjectResult;
+import com.amazonaws.services.s3.model.*;
 
+import java.util.EnumSet;
 import java.util.regex.Pattern;
 
 
 public class S3Manager {
+
 
     public static String renameFile(String fileName){
         try {

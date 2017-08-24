@@ -26,7 +26,7 @@ public class TranscoderJobManager {
         List<CreateJobOutput> outputs = new ArrayList<CreateJobOutput>();
         CreateJobOutput output = new CreateJobOutput().withKey(outputFileName).withPresetId(Parameters.PRESET_ID);
         outputs.add(output);
-        CreateJobRequest createJobRequest = new CreateJobRequest().withPipelineId(Parameters.PIPELINE_ID).withInput(input).withOutput(output);
+        CreateJobRequest createJobRequest = new CreateJobRequest().withPipelineId(Parameters.TRANSCODER_PIPELINE_ID).withInput(input).withOutput(output);
         Job job = amazonElasticTranscoder.createJob(createJobRequest).getJob();
         System.out.println("Job has been created: " + job);
 
