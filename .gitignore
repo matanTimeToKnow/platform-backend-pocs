@@ -3,4 +3,4 @@
 build/
 *.iml
 AwsCredentials.properties
-*/aws-access.properties
+aws-access.properties
