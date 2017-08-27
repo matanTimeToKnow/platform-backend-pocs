@@ -1,5 +1,5 @@
 
-package org.springframework.cloud.aws.sample;
+package test;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
