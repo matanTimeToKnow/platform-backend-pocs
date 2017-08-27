@@ -11,7 +11,7 @@ import org.springframework.context.annotation.PropertySource;
 @EnableAutoConfiguration
 @Configuration
 @ComponentScan
-@PropertySource(value="classpath:aws-access.properties")
+@PropertySource(value="classpath:awsAccess.properties")
 public class SqsTestApplication {
 
     public static void main(String[] args) {
@@ -23,7 +23,7 @@ public class SqsTestApplication {
 
     @SqsListener(value = "${queue.name}")
     private void receiveMessage(String message) {
-        System.out.println("");
+        System.out.println("Got SQS message: " + message);
     }
 
 }

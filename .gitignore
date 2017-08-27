@@ -3,4 +3,4 @@
 build/
 *.iml
 AwsCredentials.properties
-matan.properties
+awsAccess.properties
