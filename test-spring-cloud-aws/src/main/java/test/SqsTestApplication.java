@@ -18,9 +18,6 @@ public class SqsTestApplication {
         SpringApplication.run(SqsTestApplication.class, args);
     }
 
-
-    //private static final String QUEUE_NAME = "ASSETS_ON_FILE_UPLOAD_QUEUE";
-
     @SqsListener(value = "${queue.name}")
     private void receiveMessage(String message) {
         System.out.println("Got SQS message: " + message);
