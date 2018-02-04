@@ -3,9 +3,12 @@ server:
   port: 443
   ssl:
     key-store-type: PKCS12
-    key-store: classpath:t2k_keystore.p12
+    key-store: classpath:matan.p12
     key-store-password: 123456
-    key-alias: tomcat-t2k
+    #key-alias: matan
 
 security:
   require-ssl: true
+
+logging:
+  level: debug
