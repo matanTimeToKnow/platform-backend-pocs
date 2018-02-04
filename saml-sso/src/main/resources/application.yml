@@ -1,11 +1,11 @@
 # Define a custom port instead of the default 8080
 server:
-  port: 8443
+  port: 443
   ssl:
     key-store-type: PKCS12
-    key-store: classpath:keystore.p12
+    key-store: classpath:t2k_keystore.p12
     key-store-password: 123456
-    key-alias: tomcat
+    key-alias: tomcat-t2k
 
 security:
   require-ssl: true
